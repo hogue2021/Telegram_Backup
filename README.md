@@ -12,7 +12,9 @@ Editar las lineas 8, 9 y 10. El valor api_id debe ser numerico, y el api_hash y 
 
 Ejecute el script. Si es la primera vez que lo ejecuta, telegram le enviara un codigo, el cual sera solicitado por el script
 Seleccione el grupo del cual desea respaldar los participantes.
-Los datos que se guardan son el user id, el user access hash y el nombre. El user id es el identificador numerico del usuario. NO ES EL USERNAME. El hash del usuario es diferente para cada cuenta que lo vea. Si hay 2 o mas personas intentando ver mi hash, todos lo van a ver diferente
+Los datos que se guardan son el user id, el user access hash y el nombre. El user id es el identificador numerico del usuario. NO ES EL USERNAME. El hash del usuario es diferente para cada cuenta que lo vea. Si hay 2 o mas personas intentando ver mi hash, todos lo van a ver diferente. No se guarda el username ya que no todas las cuentas lo tienen
+
+Los resultados se guardan en el archivo miembros.csv, el cual se encuentra en la misma carpeta desde la que se ejecuto el script
 
 
 
