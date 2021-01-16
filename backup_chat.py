@@ -80,7 +80,7 @@ with open("miembros.csv","w",encoding='UTF-8') as f:
         writer.writerow([user.id,user.access_hash,nombreApellido])      
 print('Miembros obtenidos exitosamente')
 
-client = storage.Client.from_service_account_json(json_credentials_path='backups-xlv-7de34d8b6bdd.json')
+client = storage.Client.from_service_account_json(json_credentials_path='NOMBRE_DEL_JSON')
 bucket = client.get_bucket('backup_xlv')
 object_name_in_gcs_bucket = bucket.blob('uruguayxlaverdad/miembros.csv')
 object_name_in_gcs_bucket.upload_from_filename('miembros.csv')
