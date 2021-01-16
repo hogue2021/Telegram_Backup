@@ -1,16 +1,19 @@
 #CARGA LAS CLASES DE TELETHON
+#IMPORTS ALL TELETHON CLASSES
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerEmpty
 import csv
 
 #CREDENCIALES PARA EL LOGIN
+#LOGIN CREDENTIALS
 api_id = ID DEL API CREADO
 api_hash = 'HASH DEL API CREADO'
 phone = '+TU NUMERO DE TELEFONO CON CODIGO DE PAIS, EJ +59896285042'
 client = TelegramClient(phone, api_id, api_hash)
 
 #VERIFICA SI ESTA AUTENTICADO EN TELEGRAM. EN CASO CONTRARIO, SOLICITA A TELEGRAM QUE ENVIE UN MENSAJE CON CODIGO
+#CHECKS WHETHER THE USER IS CURRENTLY LOGGED INTO TELEGRAM OR NOT. IF NOT, TELEGRAM WILL SEND A CODE TO THE USER
 client.connect()
 if not client.is_user_authorized():
     client.send_code_request(phone)
@@ -22,7 +25,8 @@ last_date = None
 chunk_size = 200
 grupos=[]
 
-#OBTIENE LA LISTA DE GRUPOS DEL USUARIO QUE EJECUTA EL SCRIPT Y LOS MUESTRA EN PANTALLA.
+#OBTIENE LA LISTA DE SUPERGRUPOS DEL USUARIO QUE EJECUTA EL SCRIPT Y LOS MUESTRA EN PANTALLA.
+#DISPLAYS THE LIST OF SUPERGROUPS THE USER BELONGS TO
 resultado = client(GetDialogsRequest(
              offset_date=last_date,
              offset_id=0,
@@ -46,7 +50,7 @@ for g in grupos:
     i+=1
 
 g_index = input("Ingrese el numero: ")
-target_group=groups[int(g_index)]
+target_group=grupos[int(g_index)]
 
 #OBTIENE LA LISTA DE PARTICIPANTES DEL CHAT SELECCIONADO, Y GUARDA LA LISTA EN ARCHIVO MIEMBROS.CSV
 print('Obteniendo miembros...')
