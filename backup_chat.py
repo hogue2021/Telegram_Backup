@@ -3,7 +3,13 @@
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerEmpty
+
+#IMPORTA LAS CLASES DE GOOGLE CLOUD Y SISTEMA DE ARCHIVOS
+#IMPORTS ALL GOOGLE CLOUD AND FILESYSTEM CLASSES
+import os
 import csv
+from google.cloud import storage
+from google.appengine.api import app_identity
 
 #CREDENCIALES PARA EL LOGIN
 #LOGIN CREDENTIALS
@@ -73,3 +79,8 @@ with open("miembros.csv","w",encoding='UTF-8') as f:
         nombreApellido= (nombre + ' ' + apellido).strip()
         writer.writerow([user.id,user.access_hash,nombreApellido])      
 print('Miembros obtenidos exitosamente')
+
+client = storage.Client.from_service_account_json(json_credentials_path='backups-xlv-7de34d8b6bdd.json')
+bucket = client.get_bucket('backup_xlv')
+object_name_in_gcs_bucket = bucket.blob('uruguayxlaverdad/miembros.csv')
+object_name_in_gcs_bucket.upload_from_filename('miembros.csv')
